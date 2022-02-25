@@ -1,0 +1,1 @@
+for i in {57..73} ; do f=$(echo SRR3305"$i"_1_*.fastq) && r=$(echo SRR3305"$i"_2_*.fastq) && species=$(echo SRR3305"$i"_1_*.fastq | cut -f3 -d '_' | cut -c-4 ) && index=$(find ../../transcriptomes/*$species* -type d -name *.idx) && SRR=$(echo $f | cut -f 1 -d '_') && salmon quant -i $index -l A -p 12 -1 $f -2 $r -o salmon/$SRR --numBootstraps 100; done
